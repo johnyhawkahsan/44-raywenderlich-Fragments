@@ -4,9 +4,8 @@ package com.ahsan.a44_raywenderlich_fragments;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements RageComicListFragment.OnRageComicSelected{
+public class MainActivity extends AppCompatActivity implements RageComicListFragment.OnRageComicSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +33,8 @@ public class MainActivity extends AppCompatActivity implements RageComicListFrag
 
     @Override
     public void onRageComicSelected(int imageResId, String name, String description, String url) {
-        final RageComicDetailsFragment detailsFragment =
-                RageComicDetailsFragment.newInstance(imageResId, name, description, url);
-        getSupportFragmentManager()
-                .beginTransaction()
+        final RageComicDetailsFragment detailsFragment = RageComicDetailsFragment.newInstance(imageResId, name, description, url);//Passing 4 values to constructor, that we received from implemented listener method
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.root_layout, detailsFragment, "rageComicDetails")
                 .addToBackStack(null)
                 .commit();

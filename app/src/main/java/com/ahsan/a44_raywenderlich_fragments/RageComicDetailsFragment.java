@@ -19,17 +19,13 @@ public class RageComicDetailsFragment extends Fragment {
     private static final String ARGUMENT_URL = "url";
 
 
-
-
-
-
-
     //2 //Provides a method for creating new instances of the fragment, a factory method.
     //You’ll notice that while RageComicDetailsFragment has a factory instance method, newInstance(), it does not have any constructors.
     //This is because you did not define any constructors, the compiler automatically generates an empty, default constructor that takes no arguments. This is all that you should have for a fragment: no other constructors.
-    public static RageComicDetailsFragment newInstance(int imageResId, String name,
-                                                       String description, String url) {
+    public static RageComicDetailsFragment newInstance(int imageResId, String name, String description, String url) {
 
+        //TODO: NOTE By Ahsan: In this default constructor, we get those 4 values from MainActivity, and we put them in Bundle Arguments so that we can get those argumment values back in onCreateView
+        //I think we could also get those values here and could save them to Global variables instead of this arguments method.
         final Bundle args = new Bundle();
         args.putInt(ARGUMENT_IMAGE_RES_ID, imageResId);
         args.putString(ARGUMENT_NAME, name);
@@ -54,7 +50,7 @@ public class RageComicDetailsFragment extends Fragment {
         final TextView nameTextView = (TextView) view.findViewById(R.id.name);
         final TextView descriptionTextView = (TextView) view.findViewById(R.id.description);
 
-        final Bundle args = getArguments();
+        final Bundle args = getArguments();//Get Arguments for this Fragment
         imageView.setImageResource(args.getInt(ARGUMENT_IMAGE_RES_ID));
         nameTextView.setText(args.getString(ARGUMENT_NAME));
         final String text = String.format(getString(R.string.description_format), args.getString
